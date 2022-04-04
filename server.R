@@ -13,45 +13,7 @@ APP_TITLE <- "Hypothesis Testing with NBA data"
 
 #  "server file must return a server function", create server:
 function(input, output, session) {
-
-  # Setup locker configuration
-  config <- list(
-    base_url = "https://learning-locker.stat.vmhost.psu.edu/",
-    auth = "Basic YWVlMjQ2ZDJmMzk2OWMwYTk0NTY3ZTQ0ZThiMDU3NDI3MjhhNWFiYjpmYWU4NDkwNTVlMzNiMDEyNzY0OGIyOGI5YzliZjI2NjMyYzFhYzJk",
-    agent = rlocker::createAgent()
-  )
-
-  # Initialize Learning Locker connection
-  connection <- rlocker::connect(session, config)
   
-  .generateStatement <- function(session, verb = NA, object = NA, description = NA, value = NA) {
-    if(is.na(object)){
-      object <- paste0("#shiny-tab-", session$input$tabs)
-    } else {
-      object <- paste0("#", object)
-    }
-    
-    stmt <- list(
-      verb =  verb,
-      object = list(
-        id = paste0(boastUtils::getCurrentAddress(session), object),
-        name = paste0(APP_TITLE),
-        description = description
-      )
-    )
-    
-    if(!is.na(value)){
-      stmt$result <- list(
-        response = value
-      ) 
-    }
-    
-    statement <- rlocker::createStatement(stmt)
-    response <- rlocker::store(session, statement)
-    
-    return(response)   
-  }
-
   dataFilter <- reactive({
     games <- input$gamesplayed
     gameindex <- which(((playerdata$G >= games[1]) * (playerdata$G <= games[2])) == 1)
