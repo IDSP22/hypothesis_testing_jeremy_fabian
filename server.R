@@ -2,6 +2,7 @@ library(ggplot2)
 library(reshape2)
 library(dplyr)
 library(shiny)
+#library(latex2exp)
 
 APP_TITLE <- "Hypothesis Testing with NBA data"
 
@@ -77,10 +78,11 @@ function(input, output, session) {
                        se = c(a_se, b_se),
                        Player = c("Player A", "Player B"))
       subtitle <- paste("Player A:", a_ft, "Player B: ", b_ft, "SD A:", round(a_se,2) , "SD B:", round(b_se,2) )
-      p <- ggplot(dat, aes(x=Player, y=Shooting_percentage)) + ###make y axis proportion between 0 and 1
+      p <- ggplot(dat, aes(x=Player, y=Shooting_percentage)) + 
         geom_point(size = 5)+
         geom_errorbar(aes(ymin=Shooting_percentage-se, ymax=Shooting_percentage+se), width=.1,
                       position=position_dodge(0.05)) +
+        ylab("proportion of hits")+
         labs(title=('Player Free Throw Comparison'),
              subtitle = subtitle)
     } else{
@@ -213,5 +215,15 @@ function(input, output, session) {
         legend.text = element_text(size = 18),
         legend.position = "bottom"
       )
+    
+    #navigation buttons - don't work, no idea why
+    observeEvent(input$jumpToP2,{
+      updateTabItems(session, "tabs", "sampling_explained")
+    })
+    
+    observeEvent(input$jumpToP3,{
+      updateTabItems(session, "tabs", "hypothesis_testing")
+    })
+    
   })
 }
