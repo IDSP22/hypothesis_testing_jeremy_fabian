@@ -41,7 +41,7 @@ dashboardPage(
         
         br(),
         h4("At first sight it looks Player A is better than Player B. 
-           Letâs see if we have all necessary information to make that claim."),
+           Let's see if we have all necessary information to make that claim."),
         
         strong("The scenario:"),
         p("You want to compare the performance of two basketball players. 
@@ -99,8 +99,8 @@ dashboardPage(
         br(),
         p("Play around with the two sliders of the simulation below and try to answer the following questions."),
         br(),
-        h4("Whoâs the better play when both players throw 100 times?"),
-        h4("Whoâs the better plater when A throws 10 times and B 50 times?"),
+        h4("Who's the better play when both players throw 100 times?"),
+        h4("Who's the better plater when A throws 10 times and B 50 times?"),
         h4("What happens to the standard deviations when Player A throws 10 times and B 100 times?"),
         
         br(),
