@@ -1,7 +1,7 @@
 library(shiny)
 library(shinydashboard)
 
-playerdata <- read.csv("NBA201617.csv", header = TRUE)
+#playerdata <- read.csv("NBA201617.csv", header = TRUE)
 
 #  "ui file must return UI object", perform ui construction:
 dashboardPage(
@@ -42,18 +42,20 @@ dashboardPage(
         
         br(),
         h4("At first sight it looks Player A is better than Player B. 
-           Let’s see if we have all necessary information to make that claim."),
+           Letâs see if we have all necessary information to make that claim."),
         
         strong("The scenario:"),
         p("You want to compare the performance of two basketball players. 
           We use Free Throws as a measure of performance. The shots can either hit or miss. 
           Free Throws happen in are counted throughout the complete season. Based on the graphic below,"),
-        h4("can you tell who is the better player?")
+        h4("can you tell who is the better player?"),
         
-        ### SECOND TAB        
+        actionButton('jumpToP2', 'Of course I can!')
+        
+### SECOND TAB        
       ),
       tabItem(
-        tabName = "sampling_explained",
+        tabName = "sampling_explained", value = "sampling_explained",
         
         
         strong("The binomial distribution:"),
@@ -98,8 +100,8 @@ dashboardPage(
         br(),
         p("Play around with the two sliders of the simulation below and try to answer the following questions."),
         br(),
-        h4("Who’s the better play when both players throw 100 times?"),
-        h4("Who’s the better plater when A throws 10 times and B 50 times?"),
+        h4("Whoâs the better play when both players throw 100 times?"),
+        h4("Whoâs the better plater when A throws 10 times and B 50 times?"),
         h4("What happens to the standard deviations when Player A throws 10 times and B 100 times?"),
         
         br(),
@@ -130,13 +132,15 @@ dashboardPage(
                  p("Did you notice that the standard deviation of the sample proportion decreases as sample size increases? 
           The larger the standard deviation the more uncertainty does your observation include. 
           The first bar graph does not account for uncertainties at all. Hypothesis testing is one way to account for 
-          uncertainty and sample variation.")
+          uncertainty and sample variation."),
+                 
+          actionButton('jumpToP3', 'Continue.')
                  
           )
         )
       ),
       
-      
+### THIRD TAB  
       
       tabItem(
         tabName = "hypothesis_testing",
