@@ -43,14 +43,14 @@ dashboardPage(
         br(),
         h4("At first sight it looks Player A is better than Player B. 
            Let’s see if we have all necessary information to make that claim."),
-      
+        
         strong("The scenario:"),
         p("You want to compare the performance of two basketball players. 
           We use Free Throws as a measure of performance. The shots can either hit or miss. 
           Free Throws happen in are counted throughout the complete season. Based on the graphic below,"),
         h4("can you tell who is the better player?")
         
-### SECOND TAB        
+        ### SECOND TAB        
       ),
       tabItem(
         tabName = "sampling_explained",
@@ -74,8 +74,8 @@ dashboardPage(
           column(width = 8, 
                  plotOutput('free_throws'),
                  
-            br(),
-            p("The resulting distribution is called a binominal distribution, because the Free Throw can only have two values, 
+                 br(),
+                 p("The resulting distribution is called a binominal distribution, because the Free Throw can only have two values, 
             miss (the red cross) or hit (the green dot). When we want to conduct a hypothesis test we have to start thinking 
             in distributions rather than single values, like a proportion. Can we still compare the players even though 
             Player A threw for example 10 times and Player B 60 times? A comparison of proportion of hits would be misleading 
@@ -101,7 +101,7 @@ dashboardPage(
         h4("Who’s the better play when both players throw 100 times?"),
         h4("Who’s the better plater when A throws 10 times and B 50 times?"),
         h4("What happens to the standard deviations when Player A throws 10 times and B 100 times?"),
-          
+        
         br(),
         
         strong("Player comparison."),
@@ -126,8 +126,8 @@ dashboardPage(
           column(width = 8, 
                  plotOutput('shooting_comp'),
                  
-          br(),
-          p("Did you notice that the standard deviation of the sample proportion decreases as sample size increases? 
+                 br(),
+                 p("Did you notice that the standard deviation of the sample proportion decreases as sample size increases? 
           The larger the standard deviation the more uncertainty does your observation include. 
           The first bar graph does not account for uncertainties at all. Hypothesis testing is one way to account for 
           uncertainty and sample variation.")
@@ -135,9 +135,9 @@ dashboardPage(
           )
         )
       ),
-
       
-
+      
+      
       tabItem(
         tabName = "hypothesis_testing",
         
@@ -147,12 +147,41 @@ dashboardPage(
         br(),
         p("By now you probably have a feeling who is the better player, A or B. 
           Guess the true proportion for Player B and enter it as the Null value in the simulation.
-          Then interpret the p-value.")
+          Then interpret the p-value."),
         
         
-        
-        
-      )
+        fluidRow(
+          sidebarPanel(
+            selectInput(
+              inputId = 'which_player',
+              label = 'Select a player:',
+              choices = c('Player A', 'Player B')
+            ),
+            sliderInput(
+              inputId = 'nullValue',
+              label = 'Select a null value',
+              value = 0.5,
+              min = 0,
+              max = 1, 
+              step = 0.1),
+            sliderInput(
+              inputId = 'n_shots',
+              label = 'Number of shots to simulate',
+              value = 10,
+              min = 10,
+              max = 100, 
+              step = 10),
+            actionButton(inputId = 'sim_ht', label = 'Simulate Free Throws!')
+          ), 
+          column(width = 8, 
+                 DT::dataTableOutput(
+                   outputId = "testResults",
+                   width = "75%"
+                 ),
+                 plotOutput("ciPlot", height = "250px")
+              )
+          )
+        )
     )
   )
 )
