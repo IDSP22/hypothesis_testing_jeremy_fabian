@@ -33,8 +33,7 @@ dashboardPage(
         h4("Why do we need hypothesis testing?"),
         h4("How can we control for sampling variation?"),
         br(),
-        p("In this app the goal is to learn about the reasoning of a hypothesis test about proportions. 
-          This app uses 2016-2017 data for the NBA regular season."),
+        p("In this app the goal is to learn about the reasoning of a hypothesis test about proportions."),
         
         br(),
         
