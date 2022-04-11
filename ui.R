@@ -152,6 +152,15 @@ dashboardPage(
         p("By now you probably have a feeling who is the better player, A or B. 
           Guess the true proportion for Player B and enter it as the Null value in the simulation.
           Then interpret the p-value."),
+        br(),
+        p("The Hypothesis test simulation now compares your guess with the true value of the player.
+          Null hypothesis: Your guess = true value
+          Alternative hypothesis: your guess ≠true value."),
+        br(),
+        p("The p value indicates how likely it is that the sample mean of the proportion of shots aligns with your guess."),
+
+
+
         
         
         fluidRow(
